@@ -5,7 +5,8 @@ import getpass
 #DB_PASSWORD = getpass.getpass("Enter your password: ")
 DB_USER = "MYUSER"
 DB_PASSWORD = "mypassword"
-DB_DSN = "jdbc:oracle:thin:@//localhost:1521/freepdb1"
+#DB_DSN = "jdbc:oracle:thin:@//localhost:1521/freepdb1"
+DB_DSN = "localhost:1521/freepdb1"
 
 EXPORT_QUERIES = {
     "users": {

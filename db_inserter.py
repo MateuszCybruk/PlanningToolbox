@@ -21,6 +21,12 @@ INSERT_GOAL_SQL = """
     INSERT INTO goal (user_id, title, target_value, current_value, unit, deadline, achieved)
     VALUES (:user_id, :title, :target_value, :current_value, :unit, :deadline, :achieved)
 """
+INSERT_PASSWORD_SQL = """
+    INSERT INTO user_password (user_id, password_hash, active)
+    VALUES (:user_id, :password_hash, 'Y')
+"""
+
+
 
 class FitnessDBInserter:
     def __init__(self, user, password, dsn):
@@ -71,6 +77,14 @@ class FitnessDBInserter:
             "unit": unit,
             "deadline": deadline,
             "achieved": achieved
+        })
+        self._pending = True
+
+
+    def insert_password(self, user_id, password_hash):
+        self.cursor.execute(INSERT_PASSWORD_SQL, {
+            "user_id": user_id,
+            "password_hash": password_hash
         })
         self._pending = True
 
